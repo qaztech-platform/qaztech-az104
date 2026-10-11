@@ -1,4 +1,4 @@
-FROM ./QAZTECH-Tutor-8B-Q4_K_M.gguf
+FROM ./QAZTECH-AZ104-Tutor-8B-Q4_K_M.gguf
 TEMPLATE """{{- $lastUserIdx := -1 -}}
 {{- range $idx, $msg := .Messages -}}
 {{- if eq $msg.Role "user" }}{{ $lastUserIdx = $idx }}{{ end -}}

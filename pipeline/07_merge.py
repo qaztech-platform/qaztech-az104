@@ -12,7 +12,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 
 BASE = os.environ.get("BASE", "Qwen/Qwen3-8B")
 adapter = os.path.expanduser(sys.argv[1] if len(sys.argv) > 1 else "~/tutor/adapter_v2")
-out = os.path.expanduser(sys.argv[2] if len(sys.argv) > 2 else "~/tutor/QAZTECH-Tutor-8B")
+out = os.path.expanduser(sys.argv[2] if len(sys.argv) > 2 else "~/tutor/QAZTECH-AZ104-Tutor-8B")
 
 base = AutoModelForCausalLM.from_pretrained(BASE, torch_dtype=torch.bfloat16, low_cpu_mem_usage=True)
 model = PeftModel.from_pretrained(base, adapter).merge_and_unload()

@@ -1,9 +1,9 @@
 {
   "ownerSlug": "qaztechplatform",
-  "modelSlug": "qaztech-tutor-8b",
+  "modelSlug": "qaztech-az104-tutor-8b",
   "instanceSlug": "default",
   "framework": "transformers",
-  "overview": "QAZTECH Tutor 8B v0.2 preview, fine-tuned from Qwen3-8B (full bf16 weights).",
+  "overview": "QAZTECH AZ-104 Tutor 8B v0.2 preview, fine-tuned from Qwen3-8B (full bf16 weights).",
   "usage": "See the model card. Use enable_thinking=False.",
   "licenseName": "Apache 2.0",
   "fineTunable": true,

@@ -1,6 +1,6 @@
 {
   "ownerSlug": "qaztechplatform",
-  "modelSlug": "qaztech-tutor-8b",
+  "modelSlug": "qaztech-az104-tutor-8b",
   "instanceSlug": "default",
   "framework": "gguf",
   "overview": "Q4_K_M GGUF build for llama.cpp and Ollama.",

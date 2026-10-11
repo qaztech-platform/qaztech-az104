@@ -7,17 +7,17 @@ library_name: transformers
 pipeline_tag: text-generation
 tags: [education, tutor, azure, microsoft-certification, multilingual, kazakh, qwen3, lora]
 ---
-# QAZTECH® Tutor 8B (v0.2 preview)
+# QAZTECH® AZ-104 Tutor 8B (v0.2 preview)
 
 Multilingual engineering tutor for Microsoft Azure topics. It explains concepts, corrects misconceptions and writes certification-style practice questions with explanations, in English, Russian, Kazakh, Arabic and Spanish.
 
 ## Quick start
-Ollama: `ollama run qaztech-platform/tutor`
+Ollama: `ollama run qaztech-platform/az104-tutor`
 
 Transformers:
 ```python
 from transformers import AutoModelForCausalLM, AutoTokenizer
-m = "qaztech-platform/QAZTECH-Tutor-8B"
+m = "qaztech-platform/QAZTECH-AZ104-Tutor-8B"
 tok = AutoTokenizer.from_pretrained(m)
 model = AutoModelForCausalLM.from_pretrained(m, torch_dtype="auto", device_map="auto")
 msgs = [{"role": "system", "content": "You are an expert engineering tutor. Reply in the student's language."},

@@ -1,4 +1,4 @@
-# Reproducing QAZTECH Tutor 8B v0.2
+# Reproducing QAZTECH AZ-104 Tutor 8B v0.2
 
 Hardware used: NVIDIA DGX Spark (GB10, 128 GB unified memory) for data, merge and export;
 Lambda Cloud 1x A100 40 GB SXM4 for training. Paths default to `~/tutor`.
@@ -51,7 +51,7 @@ eval loss (step 300) is saved to `out/final`. Copy it back before terminating th
 ## 5. Merge, export, check
 
 ```bash
-~/mergeenv/bin/python pipeline/07_merge.py ~/tutor/adapter_v2 ~/tutor/QAZTECH-Tutor-8B
+~/mergeenv/bin/python pipeline/07_merge.py ~/tutor/adapter_v2 ~/tutor/QAZTECH-AZ104-Tutor-8B
 bash pipeline/08_export_gguf.sh
 ~/tutorenv/bin/python pipeline/09_eval_languages.py   # expect 5/5 passed
 ```

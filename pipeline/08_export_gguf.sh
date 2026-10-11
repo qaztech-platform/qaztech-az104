@@ -3,7 +3,7 @@
 # Requires the merge/export environment (requirements/merge-export.txt) and cmake.
 set -euo pipefail
 ROOT=${ROOT:-$HOME/tutor}; PY=${PY:-$HOME/mergeenv/bin/python}
-MODEL=${MODEL:-$ROOT/QAZTECH-Tutor-8B}; OUT=$ROOT/gguf; NAME=QAZTECH-Tutor-8B
+MODEL=${MODEL:-$ROOT/QAZTECH-AZ104-Tutor-8B}; OUT=$ROOT/gguf; NAME=QAZTECH-AZ104-Tutor-8B
 mkdir -p "$OUT"; cd "$ROOT"
 [ -d llama.cpp ] || git clone --depth 1 https://github.com/ggml-org/llama.cpp
 "$PY" -m pip install -q ./llama.cpp/gguf-py sentencepiece protobuf
@@ -16,5 +16,5 @@ done
 # Ollama 0.35 quantizes at create time only for safetensors imports, so build from the Q4_K_M file.
 # deploy/Modelfile uses the official Qwen3 template (hides the empty <think></think> block).
 cp "$(dirname "$0")/../deploy/Modelfile" "$OUT/Modelfile"
-(cd "$OUT" && ollama create qaztech-platform/tutor -f Modelfile)
+(cd "$OUT" && ollama create qaztech-platform/az104-tutor -f Modelfile)
 ls -la "$OUT"/*.gguf

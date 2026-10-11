@@ -1,30 +1,30 @@
 <div align="center">
 
-# QAZTECH® Tutor 8B
+# QAZTECH® AZ-104 Tutor 8B
 
 **Open multilingual engineering tutor for Microsoft Azure: EN · RU · KK · AR · ES**
 
 [![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
-[![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-QAZTECH--Tutor--8B-yellow)](https://huggingface.co/qaztech-platform/QAZTECH-Tutor-8B)
-[![GGUF](https://img.shields.io/badge/GGUF-Q4__K__M%20%7C%20Q8__0-orange)](https://huggingface.co/qaztech-platform/QAZTECH-Tutor-8B-GGUF)
-[![Ollama](https://img.shields.io/badge/Ollama-qaztech--platform%2Ftutor-black)](https://ollama.com/qaztech-platform/tutor)
+[![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-QAZTECH--AZ104--Tutor--8B-yellow)](https://huggingface.co/qaztech-platform/QAZTECH-AZ104-Tutor-8B)
+[![GGUF](https://img.shields.io/badge/GGUF-Q4__K__M%20%7C%20Q8__0-orange)](https://huggingface.co/qaztech-platform/QAZTECH-AZ104-Tutor-8B-GGUF)
+[![Ollama](https://img.shields.io/badge/Ollama-qaztech--platform%2Faz104--tutor-black)](https://ollama.com/qaztech-platform/az104-tutor)
 [![Base model](https://img.shields.io/badge/base-Qwen3--8B-purple)](https://huggingface.co/Qwen/Qwen3-8B)
 [![Status](https://img.shields.io/badge/status-v0.2%20preview-lightgrey)](CHANGELOG.md)
-[![CI](https://github.com/qaztech-platform/qaztech-tutor/actions/workflows/ci.yml/badge.svg)](https://github.com/qaztech-platform/qaztech-tutor/actions/workflows/ci.yml)
+[![CI](https://github.com/qaztech-platform/qaztech-az104/actions/workflows/ci.yml/badge.svg)](https://github.com/qaztech-platform/qaztech-az104/actions/workflows/ci.yml)
 
 </div>
 
-QAZTECH Tutor 8B explains Azure concepts, corrects misconceptions and writes certification-style practice questions with worked explanations. It answers in the student's language. This repository contains the complete, reproducible pipeline that produced the published model: synthetic data generation, quality filtering, LoRA fine-tuning, merging, GGUF export, evaluation and multi-platform publishing.
+QAZTECH AZ-104 Tutor 8B explains Azure concepts, corrects misconceptions and writes certification-style practice questions with worked explanations. It answers in the student's language. This repository contains the complete, reproducible pipeline that produced the published model: synthetic data generation, quality filtering, LoRA fine-tuning, merging, GGUF export, evaluation and multi-platform publishing.
 
 ## Try it
 
 ```bash
-ollama run qaztech-platform/tutor
+ollama run qaztech-platform/az104-tutor
 ```
 
 ```python
 from transformers import AutoModelForCausalLM, AutoTokenizer
-m = "qaztech-platform/QAZTECH-Tutor-8B"
+m = "qaztech-platform/QAZTECH-AZ104-Tutor-8B"
 tok = AutoTokenizer.from_pretrained(m)
 model = AutoModelForCausalLM.from_pretrained(m, torch_dtype="auto", device_map="auto")
 msgs = [{"role": "system", "content": "You are an expert engineering tutor. Reply in the student's language."},
@@ -39,11 +39,11 @@ Use `enable_thinking=False`: the model is trained without reasoning traces.
 
 | Platform | Artifact | Link |
 |---|---|---|
-| Hugging Face | bf16 safetensors (16.4 GB) | [qaztech-platform/QAZTECH-Tutor-8B](https://huggingface.co/qaztech-platform/QAZTECH-Tutor-8B) |
-| Hugging Face | GGUF Q4_K_M (5.0 GB), Q8_0 (8.7 GB) | [qaztech-platform/QAZTECH-Tutor-8B-GGUF](https://huggingface.co/qaztech-platform/QAZTECH-Tutor-8B-GGUF) |
-| Ollama | Q4_K_M, official Qwen3 template | [qaztech-platform/tutor](https://ollama.com/qaztech-platform/tutor) |
-| ModelScope | bf16 safetensors | [qaztechplatform/QAZTECH-Tutor-8B](https://modelscope.cn/models/qaztechplatform/QAZTECH-Tutor-8B) |
-| Kaggle | Transformers + GGUF variants | [qaztechplatform/qaztech-tutor-8b](https://www.kaggle.com/models/qaztechplatform/qaztech-tutor-8b) |
+| Hugging Face | bf16 safetensors (16.4 GB) | [qaztech-platform/QAZTECH-AZ104-Tutor-8B](https://huggingface.co/qaztech-platform/QAZTECH-AZ104-Tutor-8B) |
+| Hugging Face | GGUF Q4_K_M (5.0 GB), Q8_0 (8.7 GB) | [qaztech-platform/QAZTECH-AZ104-Tutor-8B-GGUF](https://huggingface.co/qaztech-platform/QAZTECH-AZ104-Tutor-8B-GGUF) |
+| Ollama | Q4_K_M, official Qwen3 template | [qaztech-platform/az104-tutor](https://ollama.com/qaztech-platform/az104-tutor) |
+| ModelScope | bf16 safetensors | [qaztechplatform/QAZTECH-AZ104-Tutor-8B](https://modelscope.cn/models/qaztechplatform/QAZTECH-AZ104-Tutor-8B) |
+| Kaggle | Transformers + GGUF variants | [qaztechplatform/qaztech-az104-tutor-8b](https://www.kaggle.com/models/qaztechplatform/qaztech-az104-tutor-8b) |
 
 ## Pipeline
 

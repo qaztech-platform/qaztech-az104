@@ -3,7 +3,7 @@
 | Platform | Account | Command |
 |---|---|---|
 | Hugging Face | organization `qaztech-platform` | `bash publish/huggingface.sh` |
-| Ollama | user `qaztech-platform` | `ollama push qaztech-platform/tutor` (device key of the publishing machine must be added at ollama.com/settings/keys) |
+| Ollama | user `qaztech-platform` | `ollama push qaztech-platform/az104-tutor` (device key of the publishing machine must be added at ollama.com/settings/keys) |
 | ModelScope | organization `qaztechplatform` (no hyphen allowed) | `python publish/modelscope_push.py` (token in `~/.ms_token`, mode 600, deleted after upload) |
 | Kaggle | user `qaztechplatform` (letters and digits only) | `bash publish/kaggle_push.sh` (metadata in `publish/kaggle/{model,transformers,gguf}/`, credentials in `~/.kaggle/kaggle.json`) |
 

@@ -1,6 +1,6 @@
 """Stage 09: check that the model answers in the question's language and leaks no reasoning traces.
 
-Usage: python 09_eval_languages.py [OLLAMA_MODEL]   (default qaztech-platform/tutor)
+Usage: python 09_eval_languages.py [OLLAMA_MODEL]   (default qaztech-platform/az104-tutor)
 Exit code 1 if any check fails, so it can gate a release.
 """
 import re
@@ -8,7 +8,7 @@ import sys
 
 import ollama
 
-MODEL = sys.argv[1] if len(sys.argv) > 1 else "qaztech-platform/tutor"
+MODEL = sys.argv[1] if len(sys.argv) > 1 else "qaztech-platform/az104-tutor"
 ES = {"el", "la", "los", "las", "que", "de", "en", "por", "para", "una", "es", "se", "con", "del", "qué", "cómo"}
 EN = {"the", "is", "are", "to", "of", "and", "in", "for", "what", "how", "that", "with", "which"}
 

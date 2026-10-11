@@ -1,7 +1,7 @@
 [project]
-name = "qaztech-tutor"
+name = "qaztech-az104"
 version = "0.2.0"
-description = "Reproducible pipeline for QAZTECH Tutor 8B, an open multilingual engineering tutor"
+description = "Reproducible pipeline for QAZTECH AZ-104 Tutor 8B, an open multilingual engineering tutor"
 license = { text = "Apache-2.0" }
 requires-python = ">=3.10"
 

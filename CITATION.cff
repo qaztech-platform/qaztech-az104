@@ -1,6 +1,6 @@
 cff-version: 1.2.0
-message: "If you use QAZTECH Tutor 8B, please cite it as below."
-title: "QAZTECH Tutor 8B: an open multilingual engineering tutor for Microsoft Azure"
+message: "If you use QAZTECH AZ-104 Tutor 8B, please cite it as below."
+title: "QAZTECH AZ-104 Tutor 8B: an open multilingual engineering tutor for Microsoft Azure"
 type: software
 authors:
   - name: "AISC Technologies LTD"
@@ -8,8 +8,8 @@ authors:
 version: "0.2.0"
 date-released: "2026-10-10"
 license: Apache-2.0
-repository-code: "https://github.com/qaztech-platform/qaztech-tutor"
-url: "https://huggingface.co/qaztech-platform/QAZTECH-Tutor-8B"
+repository-code: "https://github.com/qaztech-platform/qaztech-az104"
+url: "https://huggingface.co/qaztech-platform/QAZTECH-AZ104-Tutor-8B"
 keywords: [llm, education, tutor, azure, multilingual, kazakh, arabic, qwen3, lora]
 references:
   - type: software
