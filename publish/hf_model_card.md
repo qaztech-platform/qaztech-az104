@@ -45,4 +45,4 @@ Use `enable_thinking=False`: the model was trained without reasoning traces.
 Weights: Apache-2.0. Base model: Qwen3-8B by Alibaba Cloud (Apache-2.0). Training data was derived from Microsoft Azure documentation (github.com/MicrosoftDocs/azure-docs), licensed under CC BY 4.0. Microsoft and Azure are trademarks of the Microsoft group of companies.
 
 ## Trademark
-QAZTECH is a registered trade mark of AISC Technologies LTD in the United Kingdom (UK IPO nos. UK00004263700, UK00004317681, UK00004373195). The Apache-2.0 licence does not grant rights to use the QAZTECH name or logo (section 6). Derivative models must not use "QAZTECH" in their name; describe them as "based on QAZTECH Tutor".
+QAZTECH is a registered trade mark of AISC Technologies LTD in the United Kingdom (UK IPO nos. UK00004263700, UK00004317681, UK00004373195). The Apache-2.0 licence does not grant rights to use the QAZTECH name or logo (section 6). Derivative models must not use "QAZTECH" in their name; describe them as "based on QAZTECH AZ-104 Tutor".
