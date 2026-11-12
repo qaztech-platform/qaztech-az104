@@ -1,26 +1,37 @@
-<div align="center">
+![QAZTECH AZ-104 Tutor: Multilingual Azure learning with local inference.](docs/assets/banner.svg)
+
+[English](README.md) · [Русский обзор](README.ru.md)
 
 # QAZTECH® AZ-104 Tutor 8B
 
-**Open multilingual engineering tutor for Microsoft Azure: EN · RU · KK · AR · ES**
+**Multilingual Azure learning with local inference.**
 
-[![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
-[![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-QAZTECH--AZ104--Tutor--8B-yellow)](https://huggingface.co/qaztech-platform/QAZTECH-AZ104-Tutor-8B)
-[![GGUF](https://img.shields.io/badge/GGUF-Q4__K__M%20%7C%20Q8__0-orange)](https://huggingface.co/qaztech-platform/QAZTECH-AZ104-Tutor-8B-GGUF)
-[![Ollama](https://img.shields.io/badge/Ollama-qaztech--platform%2Faz104--tutor-black)](https://ollama.com/qaztech-platform/az104-tutor)
-[![Base model](https://img.shields.io/badge/base-Qwen3--8B-purple)](https://huggingface.co/Qwen/Qwen3-8B)
-[![Status](https://img.shields.io/badge/status-v0.2%20preview-lightgrey)](CHANGELOG.md)
+[![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-375D86)](LICENSE)
+[![Base: Qwen3-8B](https://img.shields.io/badge/base-Qwen3--8B-375D86)](https://huggingface.co/Qwen/Qwen3-8B)
+[![Release: v0.2.0 preview](https://img.shields.io/badge/release-v0.2.0_preview-375D86)](https://github.com/qaztech-platform/qaztech-az104/releases/tag/v0.2.0)
 [![CI](https://github.com/qaztech-platform/qaztech-az104/actions/workflows/ci.yml/badge.svg)](https://github.com/qaztech-platform/qaztech-az104/actions/workflows/ci.yml)
 
-</div>
+[Quick start](#quick-start) · [Model artifacts](#model-artifacts) · [Documentation](#documentation) · [Results](#results-v02)
 
 QAZTECH AZ-104 Tutor 8B explains Azure concepts, corrects misconceptions and writes certification-style practice questions with worked explanations. It answers in the student's language. This repository contains the complete, reproducible pipeline that produced the published model: synthetic data generation, quality filtering, LoRA fine-tuning, merging, GGUF export, evaluation and multi-platform publishing.
 
-## Try it
+## Choose a QAZTECH model
+
+| Model | Start here when you want to… |
+| --- | --- |
+| [AZ-104 Tutor 8B](https://github.com/qaztech-platform/qaztech-az104) | Learn Azure concepts and practise certification-style questions with explanations. |
+| [Azure Engineer 8B](https://github.com/qaztech-platform/qaztech-azure) | Write, review and troubleshoot Azure infrastructure code. |
+
+Both models target English, Russian, Kazakh, Arabic and Spanish. Language and technical quality vary; see each model's evaluation and limitations.
+
+## Quick start
 
 ```bash
 ollama run qaztech-platform/az104-tutor
 ```
+
+<details>
+<summary>Run with Hugging Face Transformers</summary>
 
 ```python
 from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -35,7 +46,9 @@ print(tok.decode(model.generate(ids, max_new_tokens=400)[0][ids.shape[1]:], skip
 
 Use `enable_thinking=False`: the model is trained without reasoning traces.
 
-## Where to get it
+</details>
+
+## Model artifacts
 
 | Platform | Artifact | Link |
 |---|---|---|
@@ -45,17 +58,28 @@ Use `enable_thinking=False`: the model is trained without reasoning traces.
 | ModelScope | bf16 safetensors | [qaztechplatform/QAZTECH-AZ104-Tutor-8B](https://modelscope.cn/models/qaztechplatform/QAZTECH-AZ104-Tutor-8B) |
 | Kaggle | Transformers + GGUF variants | [qaztechplatform/qaztech-az104-tutor-8b](https://www.kaggle.com/models/qaztechplatform/qaztech-az104-tutor-8b) |
 
+## Documentation
+
+| Guide | Contents |
+| --- | --- |
+| [Reproduce the model](docs/REPRODUCE.md) | Hardware, environments, data generation, training and export. |
+| [Data](docs/DATA.md) | Sources, filtering and dataset composition. |
+| [Results](docs/RESULTS.md) | Training curve and the five-prompt behaviour check. |
+| [Deployment](deploy/README.md) | Ollama build and deployment guidance. |
+| [Publishing](docs/PUBLISHING.md) | Artifact publishing workflow. |
+| [Contributing](CONTRIBUTING.md) | Language review, factual corrections and pipeline changes. |
+
 ## Pipeline
 
+Data generation used 1,194 Azure documentation files and Qwen3-30B-A3B-Instruct-2507 on DGX Spark. LoRA training used Qwen3-8B on one A100 40 GB for 3 epochs and 462 steps.
+
 ```mermaid
-flowchart LR
-    A["Microsoft Azure docs<br/>1,194 Markdown files<br/>CC BY 4.0"] --> B["Teacher generation<br/>Qwen3-30B-A3B-Instruct-2507<br/>Ollama on DGX Spark"]
-    B --> C["Quality filters<br/>language match, no mixed scripts,<br/>exam structure, dedup"]
-    C --> D["LoRA SFT<br/>Qwen3-8B, 1x A100 40 GB<br/>3 epochs, 462 steps"]
-    D --> E["Merge to bf16"]
-    E --> F["GGUF<br/>Q4_K_M · Q8_0"]
-    E --> G["Hugging Face · ModelScope · Kaggle"]
-    F --> H["Ollama · llama.cpp"]
+flowchart TB
+    A["Azure documentation"] --> B["Generate, filter and train"]
+    B --> C["Merged bf16 weights"]
+    C --> D["Hugging Face, ModelScope and Kaggle"]
+    C --> E["GGUF: Q4_K_M and Q8_0"]
+    E --> F["Ollama and llama.cpp"]
 ```
 
 | # | Stage | Script | Runs on |
@@ -103,13 +127,13 @@ Data composition, filters and the full eval-loss curve: [docs/DATA.md](docs/DATA
 
 ## Repository layout
 
-```
-pipeline/   numbered stages 00-09: docs, generation, filtering, training, merge, GGUF, evaluation
-requirements/  pinned dependencies per environment
-publish/    Hugging Face, ModelScope and Kaggle publishing (incl. Kaggle metadata)
-deploy/     Ollama Modelfile
-docs/       reproduction guide, data, results, publishing
-```
+| Directory | Purpose |
+| --- | --- |
+| [`pipeline/`](pipeline/) | Numbered stages 00–09, from source documentation to evaluation. |
+| [`requirements/`](requirements/) | Dependencies per environment. |
+| [`publish/`](publish/) | Model-hub publishing scripts and metadata. |
+| [`deploy/`](deploy/) | Ollama Modelfile and deployment notes. |
+| [`docs/`](docs/) | Reproduction, data, results and publishing guides. |
 
 ## Licence, attribution and trademark
 
@@ -120,3 +144,6 @@ QAZTECH is a registered trade mark of AISC Technologies LTD in the United Kingdo
 ## Citation
 
 See [CITATION.cff](CITATION.cff).
+
+
+Maintained by **AISC Technologies LTD · United Kingdom**. [Feedback and questions](https://github.com/qaztech-platform/qaztech-az104/issues).
